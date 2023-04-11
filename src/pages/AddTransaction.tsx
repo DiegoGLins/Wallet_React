@@ -5,6 +5,7 @@ import { useAppDispatch } from '../store/hooks';
 import { addTransaction } from '../store/modules/transactionsSlice';
 import TransactionType from '../types/TransactionType';
 import generateID from '../utils/generateID';
+import { credito, debito } from '../store/modules/saldoSlice';
 
 const AddTransaction: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -12,7 +13,7 @@ const AddTransaction: React.FC = () => {
   const [value, setValue] = useState<number>(0);
   const [description, setDescription] = useState<string>('');
   const [date, setDate] = useState<string>('');
-  const [type, setType] = useState<string>('D'||'C');
+  const [type, setType] = useState<string>('debito' || 'credito');
 
   const [descriptionError, setDescriptionError] = useState<boolean>(false);
   const [valueError, setValueError] = useState<boolean>(false);
@@ -42,7 +43,6 @@ const AddTransaction: React.FC = () => {
   }, [value]);
 
   const handleClear = () => {
-
     setDescription('');
     setDate('');
     setValue(0);
@@ -52,10 +52,16 @@ const AddTransaction: React.FC = () => {
     const transaction: TransactionType = { id: generateID(), description, value, date, type };
 
     dispatch(addTransaction(transaction));
+    if (type === 'debito') {
+      dispatch(debito(value));
+   
+    } else if (type === 'credito'){
+      dispatch(credito(value));
+    }
 
     handleClear();
   };
-  
+
   return (
     <Grid container spacing={2}>
       <TitlePage title="Adicionar nova transação" />
@@ -99,16 +105,17 @@ const AddTransaction: React.FC = () => {
       <Grid item xs={12}>
         <TextField
           value={type}
-          onChange={event => setType(event.target.value)}
+          onChange={event => {
+            setType(event.target.value);
+          }}
           fullWidth
-          id="type"
           select
           defaultValue=""
           label="Tipo da transação"
           variant="outlined"
         >
-          <MenuItem value="D">Débito</MenuItem>
-          <MenuItem value="C">Crédito</MenuItem>
+          <MenuItem value="debito">Débito</MenuItem>
+          <MenuItem value="credito">Crédito</MenuItem>
         </TextField>
       </Grid>
       <Grid item xs={6}>

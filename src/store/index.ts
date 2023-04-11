@@ -3,6 +3,8 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import rootReducer from './modules/rootReducer';
+import transactions from './modules/transactionsSlice';
+import saldoSlice from './modules/saldoSlice';
 
 const persistConfig = {
   key: 'list-transactions',
@@ -12,7 +14,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer
+  reducer: { persistedReducer, transactions, saldoSlice }
 });
 
 export const persistor = persistStore(store);

@@ -7,11 +7,8 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { Link, useNavigate } from 'react-router-dom';
 
 import routes from '../routes/routes';
@@ -21,7 +18,7 @@ import { selectTotal } from '../store/modules/transactionsSlice';
 
 function ResponsiveAppBar() {
   const navigate = useNavigate();
-  const totalContacts = useAppSelector(selectTotal);
+  const totalTransactions = useAppSelector(selectTotal);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -30,7 +27,6 @@ function ResponsiveAppBar() {
   };
 
   const handleCloseNavMenu = (url: string) => {
-    console.log('Clicou no link', url);
     setAnchorElNav(null);
     navigate(url);
   };
@@ -39,7 +35,7 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Badge badgeContent={totalContacts} color="secondary">
+          <Badge badgeContent={totalTransactions} color="secondary">
             <Typography
               variant="h6"
               noWrap
@@ -55,7 +51,7 @@ function ResponsiveAppBar() {
                 textDecoration: 'none'
               }}
             >
-              Meus contatos
+              Minhas transações
             </Typography>
           </Badge>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -110,7 +106,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none'
             }}
           >
-            Meus contatos
+            Minhas Transações
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: { md: 'flex-end' } }}>
             {routes.map(page => (

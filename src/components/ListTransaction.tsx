@@ -4,8 +4,6 @@ import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
-import { useAppDispatch } from '../store/hooks';
-import { useNavigate } from 'react-router-dom';
 import TransactionType from '../types/TransactionType';
 
 interface ListTransactionProps {
@@ -13,8 +11,6 @@ interface ListTransactionProps {
 }
 
 const ListTransaction: React.FC<ListTransactionProps> = ({ data }) => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const [dataLocal, setDataLocal] = useState<TransactionType[]>([]);
 
   useEffect(() => {
