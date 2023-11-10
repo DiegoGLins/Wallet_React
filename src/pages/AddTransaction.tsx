@@ -49,13 +49,13 @@ const AddTransaction: React.FC = () => {
   };
 
   const handleAdd = () => {
-    const transaction: TransactionType = { id: generateID(), description, value, date, type };
+    const transaction: TransactionType[] = [{ id: generateID(), description, value, date, type }];
 
     dispatch(addTransaction(transaction));
     if (type === 'debito') {
       dispatch(debito(value));
-   
-    } else if (type === 'credito'){
+
+    } else if (type === 'credito') {
       dispatch(credito(value));
     }
 
