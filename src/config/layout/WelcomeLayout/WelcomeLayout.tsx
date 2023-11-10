@@ -3,14 +3,14 @@ import React from 'react';
 import GridContainerWelcome from './components/GridContainerWelcome';
 
 interface WelcomeLayoutProps {
-  component: React.FC;
+  component: React.ReactElement;
 }
 
-const WelcomeLayout: React.FC<WelcomeLayoutProps> = ({ component: Component }) => {
+const WelcomeLayout: React.FC<WelcomeLayoutProps> = ({ component }) => {
   return (
     <GridContainerWelcome container justifyContent="center" alignItems="center">
       <Grid item xs={12}>
-        <Component />
+        {component}
       </Grid>
     </GridContainerWelcome>
   );

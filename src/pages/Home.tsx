@@ -16,7 +16,7 @@ const Home: React.FC = () => {
       <TitlePage title="Lista de transações" />
       <Typography>{saldo}</Typography>
       <Grid item xs={12}>
-        <ListTransaction data={transactionsRedux}/>
+        <ListTransaction data={transactionsRedux} />
       </Grid>
     </Grid>
   );

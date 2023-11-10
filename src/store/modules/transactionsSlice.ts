@@ -1,4 +1,4 @@
-import { createSlice, createEntityAdapter} from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import TransactionType from '../../types/TransactionType';
 import { RootState } from '../index';
 
@@ -13,11 +13,11 @@ const transactionsSlice = createSlice({
   name: 'transactions',
   initialState: adapter.getInitialState(),
   reducers: {
-    addTransaction: adapter.addOne,
+    addTransaction: adapter.addMany,
     updateTransaction: adapter.updateOne,
     removeTransaction: adapter.removeOne,
   }
 });
 
-export const { addTransaction, removeTransaction, updateTransaction} = transactionsSlice.actions;
+export const { addTransaction, removeTransaction, updateTransaction } = transactionsSlice.actions;
 export default transactionsSlice.reducer;

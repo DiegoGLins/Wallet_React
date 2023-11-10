@@ -11,7 +11,7 @@ const AppRoutes: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<WelcomeLayout component={Welcome} />} />
+        <Route path="/" element={<WelcomeLayout component={<Welcome/>} />} />
         <Route path="/home" element={<DefaultLayout component={Home} />} />
         <Route path="/add-transaction" element={<DefaultLayout component={AddTransactions} />} />
       </Routes>
